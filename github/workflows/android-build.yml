@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
@@ -19,6 +18,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          # Deshabilitar la búsqueda de archivos de Gradle/Android para evitar el error
+          cache: 'gradle'
+          check-latest: true 
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -34,6 +36,12 @@ jobs:
       - name: Run Buildozer
         run: |
           buildozer android debug
+      
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Llavero-Soberano
+          path: bin/Llavero-Soberano-*.apk
       
       - name: Upload APK
         uses: actions/upload-artifact@v2
