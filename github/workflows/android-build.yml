@@ -39,3 +39,8 @@ jobs:
         with:
           name: Llavero-Soberano
           path: bin/Llavero-Soberano-*.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Llavero-Soberano
+          path: bin/Llavero-Soberano-*.apk
