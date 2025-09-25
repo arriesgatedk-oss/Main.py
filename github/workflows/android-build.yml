@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  # Este gatillo manual nos ayudará si el automático falla
+  workflow_dispatch:
 
 jobs:
   build:
@@ -40,25 +42,10 @@ jobs:
 
       - name: Run Buildozer
         run: |
-          # buildozer init  # Solo la primera vez, descomenta si es necesario
           buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
-        with:
-          name: Llavero-Soberano
-          path: bin/Llavero-Soberano-*.apk
-        run: |
-          buildozer android debug
-      
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: Llavero-Soberano
-          path: bin/Llavero-Soberano-*.apk
-      
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
         with:
           name: Llavero-Soberano
           path: bin/Llavero-Soberano-*.apk
